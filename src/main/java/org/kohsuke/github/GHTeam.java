@@ -45,7 +45,9 @@ public class GHTeam extends GHObject implements Refreshable {
          */
         MAINTAINER,
         /** A normal member of the team. */
-        MEMBER
+        MEMBER,
+        /** Unknown role. */
+        UNKNOWN
     }
 
     /**
@@ -59,7 +61,11 @@ public class GHTeam extends GHObject implements Refreshable {
         /**
          * No one receives notifications.
          */
-        NOTIFICATIONS_DISABLED
+        NOTIFICATIONS_DISABLED,
+        /**
+         * Unknown notification setting.
+         */
+        UNKNOWN
     }
 
     /**
