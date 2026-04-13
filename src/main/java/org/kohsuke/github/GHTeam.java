@@ -49,6 +49,20 @@ public class GHTeam extends GHObject implements Refreshable {
     }
 
     /**
+     * Notification setting across a team
+     */
+    public enum NotificationSetting {
+        /**
+         * Team members receive notifications when the team is @mentioned.
+         */
+        NOTIFICATIONS_ENABLED,
+        /**
+         * No one receives notifications.
+         */
+        NOTIFICATIONS_DISABLED
+    }
+
+    /**
      * Path for external group-related operations
      */
     private static final String EXTERNAL_GROUPS = "/external-groups";
@@ -509,6 +523,15 @@ public class GHTeam extends GHObject implements Refreshable {
      */
     public void setPrivacy(Privacy privacy) throws IOException {
         root().createRequest().method("PATCH").with("privacy", privacy).withUrlPath(api("")).send();
+    }
+
+    /**
+     * Start constructing an update request for multiple properties of this team.
+     *
+     * @return a builder to update this team
+     */
+    public GHTeamUpdateBuilder updateTeam() {
+        return new GHTeamUpdateBuilder(root(), organization.getLogin(), name);
     }
 
     private String api(String tail) {
